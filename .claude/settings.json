@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)"
+    ],
+    "deny": [
+      "Bash(adb:*)",
+      "Bash(*adb install*)",
+      "Bash(*pm uninstall*)",
+      "Bash(*settings put*)",
+      "Bash(rm -rf:*)",
+      "Bash(termux-setup-storage:*)",
+      "Bash(pkg:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Read(/sdcard/**)",
+      "Read(/storage/**)",
+      "Read(~/.ssh/**)",
+      "Edit(.claude/settings.json)"
+    ]
+  }
+}
