@@ -41,11 +41,9 @@ termux-wake-lock
 
 ## 3. Get the project onto the phone
 
-Download `cr-agent.zip` from the chat → in the Files app, **Share → Termux**. Termux saves it
-to `~/downloads/` (no storage permission needed). Then:
-
 ```bash
-cd ~ && unzip ~/downloads/cr-agent.zip     # creates ~/cr-agent
+pkg install git
+cd ~ && git clone https://github.com/Jivraj-18/cr-agent
 cd ~/cr-agent
 python -m venv --system-site-packages .venv   # sees pkg's numpy/OpenCV, isolates pip installs
 . .venv/bin/activate
