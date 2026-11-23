@@ -13,20 +13,6 @@ plays; Claude itself is the slow loop (between matches / on big events), not a p
   come from Termux `pkg`). Run Python as `.venv/bin/python` from the repo root, or
   `../.venv/bin/python` from `bridge/`.
 
-## Hard rules
-1. **All phone interaction goes through `bridge/bridge.py`** (screenshot / tap / swipe /
-   foreground check). Never call `adb shell input`, `adb install`, `pm`, `settings`, or other
-   adb shell commands directly. The only raw adb you may run: `adb devices`, `adb connect`.
-2. Taps only while Clash Royale (`com.supercell.clashroyale`) is in front — bridge.py enforces it;
-   don't work around it.
-3. **Training Camp only** (battles vs the game's AI). Never start ladder/ranked or play against
-   real people. Never spend gems/gold, buy anything, or change account settings.
-4. Don't run `termux-setup-storage`, don't read `/sdcard` or `/storage`, don't touch other apps.
-5. If adb isn't connected, don't try to fix pairing yourself — ask the user for the current
-   port from Settings → Developer options → Wireless debugging → "IP address and port", then
-   run `adb connect <ip>:<port>`.
-6. Keep changes inside this repo. Commit with clear messages when something works.
-
 ## Files
 - `bridge/SETUP.md` — how the phone was set up
 - `bridge/bridge.py` — gated phone control layer
@@ -34,7 +20,9 @@ plays; Claude itself is the slow loop (between matches / on big events), not a p
 - `knowledge/clash_royale_player_knowledge.md` — game rules and what the agent must track
 
 ## Current task: bridge start test (SETUP.md step 5)
-1. `adb devices` — confirm one device is listed as `device`. If not, see rule 5.
+1. `adb devices` — confirm one device is listed as `device`. If not, ask the user for the current port
+   (Settings → Developer options → Wireless debugging → "IP address and port") and run
+   `adb connect <ip>:<port>`.
 2. Ask the user to open Clash Royale and start a **Training Camp** match, and to say when it's running.
 3. From `bridge/`: `../.venv/bin/python bridge_test.py` (read-only), then try
    `../.venv/bin/python bridge_test.py --stream 5` (needs PyAV; if `pip install av` would
